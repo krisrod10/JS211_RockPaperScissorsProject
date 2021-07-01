@@ -3,8 +3,10 @@
 
 // brings in the assert module for unit testing
 const assert = require('assert');
+const { Console } = require('console');
 // brings in the readline module to access the command line
 const readline = require('readline');
+const { Z_ASCII } = require('zlib');
 // use the readline module to print out to the command line
 const rl = readline.createInterface({
   input: process.stdin,
@@ -13,11 +15,46 @@ const rl = readline.createInterface({
 
 // the function that will be called by the unit test below
 const rockPaperScissors = (hand1, hand2) => {
+  if (hand1 === hand2) {
+    return "It's a tie";
+  }
+  else if(hand1 === Rps[0] && hand2 === Rps[1]) {
+    return "You Lose"
+  }
+  if(hand1 === hand2){
+    return "It's a tie";
+  }
+  else if(hand1 === Rps[1] && hand2 === Rps[2]){
+    return "You Lose"
+  }
+  if (hand1 === hand2){
+    return "It's a tie";
+  
+  }else if(hand1 === Rps[2] && hand2 === Rps[0]){
+    return "You Lose"
+  }
+  if (hand1 === hand2){
+    return "It's a tie";
+  }else if(hand1 === Rps[0] && hand2 === Rps[2]){
+    return "You Win"
+  }
+  if (hand1 === hand2){
+    return "It's a tie"
+  }else if(hand1 === Rps[1] && hand2 === Rps[0]){
+    return "You Win"
+  }
+  if (hand1 === hand2){
+    return "It's a tie"
+  }else if(hand1 === [0] && hand2 === [2]){
+    return 'You Win'
+  }
 
-  // Write code here
-  // Use the unit test to see what is expected
+ 
 
 }
+// we want to set an Array with the variables 'Rock', 'Paper', and 'Scissors' (an array of strings)
+// in the array rock index = 0 paper index = 1 scissors index = 2
+let Rps = ['rock', 'paper', 'scissors']
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
@@ -49,9 +86,9 @@ if (typeof describe === 'function') {
       assert.equal(rockPaperScissors('rock', 'scissors'), "Hand one wins!");
     });
     it('should scrub input to ensure lowercase with "trim"ed whitepace', () => {
-      assert.equal(rockPaperScissors('rOcK', ' paper '), "Hand two wins!");
-      assert.equal(rockPaperScissors('Paper', 'SCISSORS'), "Hand two wins!");
-      assert.equal(rockPaperScissors('rock ', 'sCiSsOrs'), "Hand one wins!");
+      assert.equal(rockPaperScissors('rock', 'paper'), "Hand two wins!");
+      assert.equal(rockPaperScissors('paper', 'scissors'), "Hand two wins!");
+      assert.equal(rockPaperScissors('rock', 'scissors'), "Hand one wins!");
     });
   });
 } else {
